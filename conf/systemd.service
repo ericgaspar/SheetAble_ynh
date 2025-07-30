@@ -1,18 +1,19 @@
 [Unit]
-Description=Small description of the service
-After=network.target
+Description=SheetAble: Music sheet organizing software
+Documentation=https://miniflux.app/docs/#database-connection-parameters
+After=network.target postgresql.service
 
 [Service]
-Type=simple
+Type=notify
 User=__APP__
 Group=__APP__
-WorkingDirectory=__INSTALL_DIR__/
-ExecStart=__INSTALL_DIR__/script
+EnvironmentFile=__INSTALL_DIR__/.env
+ExecStart=__INSTALL_DIR__/sheetable
 StandardOutput=append:/var/log/__APP__/__APP__.log
 StandardError=inherit
+NonBlocking=true
+Restart=always
 
-### Depending on specificities of your service/app, you may need to tweak these
-### .. but this should be a good baseline
 # Sandboxing options to harden security
 # Details for these options: https://www.freedesktop.org/software/systemd/man/systemd.exec.html
 NoNewPrivileges=yes
