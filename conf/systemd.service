@@ -1,7 +1,6 @@
 [Unit]
 Description=SheetAble: Music sheet organizing software
-Documentation=https://miniflux.app/docs/#database-connection-parameters
-After=network.target postgresql.service
+After=network.target
 
 [Service]
 Type=notify
